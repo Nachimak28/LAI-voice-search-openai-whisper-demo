@@ -4,7 +4,7 @@ import lightning as L
 
 class RootFlow(L.LightningFlow):
     def __init__(self):
-        super().__init__()
+        super().__init__() 
         self.lit_gradio = LitGradio()
 
     def run(self):
