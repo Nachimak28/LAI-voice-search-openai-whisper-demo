@@ -8,10 +8,12 @@ from .ddg_search_component import Search
 class WhisperSearch:
     def _setup(self):
         self.model = whisper.load_model("base")
-        self.web_crawler = Search()
 
     def __init__(self):
         self.model = None
+        self.web_crawler = Search()
+
+        self._setup()
 
     def _prep_audio(self, audio_file_path):
         # load audio and pad/trim it to fit 30 seconds

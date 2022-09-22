@@ -16,7 +16,7 @@ class LitGradio(ServeGradio):
     # examples = [['Is 42 the answer to everything?']]
 
     def __init__(self):
-        super().__init__(parallel=True)
+        super().__init__(parallel=True, host='0.0.0.0', port=8888)
 
     def predict(self, audio_file):
         return self.model.get_search_results_from_speech(audio_file)
