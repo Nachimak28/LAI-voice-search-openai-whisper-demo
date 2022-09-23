@@ -20,10 +20,12 @@ Once the app is installed, run it locally with:
 lightning run app LAI_voice_search_openai_whisper_demo/app.py
 ```
 
+
+
 Run it on the [lightning cloud](lightning.ai) with:
 
 ```bash
-lightning run app LAI_voice_search_openai_whisper_demo/app.py --cloud
+lightning run app LAI_voice_search_openai_whisper_demo/app.py --cloud --env RS_PASS=some_password
 ```
 
 ## to test and link
