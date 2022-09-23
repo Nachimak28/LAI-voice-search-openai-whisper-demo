@@ -36,8 +36,9 @@ class WhisperSearch:
         # get the language
         # language = self._detect_spoken_language(mel)
         
-        # do the transcription
-        options = whisper.DecodingOptions(task='translate')
+        # do the transcription - uncomment one of the options line as per env
+        options = whisper.DecodingOptions(task='translate', fp16=False) # for running on CPU
+        # options = whisper.DecodingOptions(task='translate') # for running on GPU
         result = whisper.decode(self.model, mel, options)
 
         return result.text
