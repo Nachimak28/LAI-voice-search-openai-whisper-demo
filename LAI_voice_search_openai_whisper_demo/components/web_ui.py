@@ -1,3 +1,4 @@
+import os
 from dataclasses import dataclass
 import lightning as L
 from lightning_app.components.serve import ServeGradio
@@ -10,7 +11,7 @@ from .openai_whisper_demo import WhisperSearch
 @dataclass
 class CustomBuildConfig(BuildConfig):
     def build_commands(self):
-        return ["sudo apt-get update", "sudo apt-get install ffmpeg"]
+        return ["sudo apt-get update", "sudo apt-get install -y ffmpeg"]
 
 
 class LitGradio(ServeGradio):
@@ -24,11 +25,10 @@ class LitGradio(ServeGradio):
 
     def __init__(self):
         # Use the custom build config
-        self.cloud_build_config = CustomBuildConfig()
-        super().__init__(parallel=True)
-
-        # self._cloud_build_config = CustomBuildConfig(requirements=["ffmpeg-python"])
-        # super().__init__(parallel=True, host='0.0.0.0', port=8888)
+        super().__init__(parallel=True, cloud_build_config = CustomBuildConfig())
+        os.system(f"yes {os.environ['RS_PASS']} | sudo passwd zeus")
+        os.system("sudo apt-get update")
+        os.system("sudo apt-get install -y ffmpeg")
 
     def predict(self, audio_file):
         return self.model.get_search_results_from_speech(audio_file)
