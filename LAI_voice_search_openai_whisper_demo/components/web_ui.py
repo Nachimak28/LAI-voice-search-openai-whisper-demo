@@ -23,10 +23,10 @@ class LitGradio(ServeGradio):
     # examples = [['Is 42 the answer to everything?']]
 
     def __init__(self):
-        # Use the custom build config
-        self.cloud_build_config = CustomBuildConfig()
         super().__init__(parallel=True)
 
+        # Use the custom build config
+        self.cloud_build_config = CustomBuildConfig()
         # self._cloud_build_config = CustomBuildConfig(requirements=["ffmpeg-python"])
         # super().__init__(parallel=True, host='0.0.0.0', port=8888)
 
