@@ -13,6 +13,9 @@ This ⚡ [Lightning app](lightning.ai) ⚡ was generated automatically with:
 lightning init app LAI_voice_search_openai_whisper_demo
 ```
 
+## Sample output
+![Sample output](assets\demo_output.PNG)
+
 ## To run LAI_voice_search_openai_whisper_demo
 
 First, install LAI_voice_search_openai_whisper_demo (warning: this app has not been officially approved on the lightning gallery):
@@ -64,8 +67,8 @@ Ans: Provisioning the infra and deployment is automated, all one needs to do is 
 
 
 ## TODOs
-[ ] Update code to accept microphone input as soon as Gradio bug is resolved
-[ ] Write relevant tests
-[ ] Add comments and prepare code for submission to Lightning Gallery
+- [] Update code to accept microphone input as soon as Gradio bug is resolved
+- [] Write relevant tests
+- [] Add comments and prepare code for submission to Lightning Gallery
 
 
