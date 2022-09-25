@@ -21,7 +21,8 @@ class LitGradio(ServeGradio):
 
     outputs = gr.components.HTML(label="Transcribed output")
     enable_queue = True
-    examples = [["./resources/42_ans_to_everything_english.wav"]]
+    examples = [["./resources/meaning_of_life.wav"], 
+                ["./resources/42_ans_to_everything_english.wav"]]
 
     def __init__(self):
         # Use the custom build config
