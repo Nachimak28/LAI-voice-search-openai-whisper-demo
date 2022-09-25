@@ -14,7 +14,7 @@ lightning init app LAI_voice_search_openai_whisper_demo
 ```
 
 ## Sample output
-![Sample output](assets\demo_output.PNG)
+![Sample output](https://github.com/Nachimak28/LAI-voice-search-openai-whisper-demo/blob/master/assets/demo_output.PNG)
 
 ## To run LAI_voice_search_openai_whisper_demo
 
