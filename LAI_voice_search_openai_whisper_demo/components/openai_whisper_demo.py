@@ -2,6 +2,7 @@
 # predict method:
 #   1. does the audio transcription to english text
 #   2. return the search results for ddg in html format to serve to gradio
+import torch
 import whisper
 
 from .ddg_search_component import Search
@@ -37,18 +38,16 @@ class WhisperSearch:
         # get the language
         # language = self._detect_spoken_language(mel)
 
-        # do the transcription - uncomment one of the options line as per env
-        options = whisper.DecodingOptions(
-            task="translate", fp16=False
-        )  # for running on CPU
-        # options = whisper.DecodingOptions(task='translate') # for running on GPU
+        if torch.cuda.is_available():
+            # for running on GPU
+            options = whisper.DecodingOptions(task="translate")
+        else:
+            # for running on CPU
+            options = whisper.DecodingOptions(task="translate", fp16=False)
         result = whisper.decode(self.model, mel, options)
-
         return result.text
 
     def get_search_results_from_speech(self, audio_file_path):
         search_query = self.predict(audio_file_path=audio_file_path)
-
         search_results = self.web_crawler.search(search_query)
-
         return search_results
