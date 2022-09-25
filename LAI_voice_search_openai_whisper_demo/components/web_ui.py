@@ -3,9 +3,7 @@ from dataclasses import dataclass
 
 import gradio as gr
 import lightning as L
-from lightning_app.components.serve import ServeGradio
-
-from .openai_whisper_demo import WhisperSearch
+from lightning.app.components.serve import ServeGradio
 
 
 @dataclass
@@ -41,5 +39,7 @@ class LitGradio(ServeGradio):
         return self.model.get_search_results_from_speech(audio_file)
 
     def build_model(self):
+        from .openai_whisper_demo import WhisperSearch
+
         voice_to_search = WhisperSearch()
         return voice_to_search
