@@ -59,7 +59,9 @@ class LitGradio(ServeGradio):
             outputs=self.outputs,
             examples=self.examples,
             title="Speech Search Engine",
-            description="Make search on DuckDuckGo by uploading your audio. <br>It is deployed on small CPU so might run slow 🐢. For faster inference clone the app and run on a GPU.",
+            description="""Make search on DuckDuckGo by uploading your audio.
+            <br>It is deployed on small CPU so might run slow 🐢. 
+            For faster inference clone the app and run on a GPU.""",
             cache_examples=True,
         ).launch(
             server_name=self.host,
