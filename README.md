@@ -1,6 +1,11 @@
 # LAI_voice_search_openai_whisper_demo app
 
-![https://01gdsn5tjxxybeehjc8c7z6ywz.litng-ai-03.litng.ai/view](https://bit.ly/3xTcccO)
+
+[![LAI](https://bit.ly/3xTcccO)][#app-gallery]
+
+[#app-gallery]: https://01gdsn5tjxxybeehjc8c7z6ywz.litng-ai-03.litng.ai/view/home
+
+
 
 This ⚡ [Lightning app](lightning.ai) ⚡ was generated automatically with:
 
