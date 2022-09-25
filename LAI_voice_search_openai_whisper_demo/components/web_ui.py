@@ -15,23 +15,18 @@ class CustomBuildConfig(BuildConfig):
 
 class LitGradio(ServeGradio):
 
-    inputs = [
-        gr.components.Audio(
-            source="microphone", type="filepath", label="Record your voice"
-        ),
-        gr.components.Audio(
+    inputs = gr.components.Audio(
             source="upload", type="filepath", label="Upload your audio"
-        ),
-    ]
+        )
+
     outputs = gr.components.HTML(label="Transcribed output")
-    enable_queue = False
+    enable_queue = True
 
     def __init__(self):
         # Use the custom build config
         super().__init__(parallel=True, cloud_build_config=CustomBuildConfig())
 
-    def predict(self, recorded_audio, uploaded_audio):
-        audio_file = recorded_audio or uploaded_audio
+    def predict(self, audio_file):
         return self.model.get_search_results_from_speech(audio_file)
 
     def build_model(self):

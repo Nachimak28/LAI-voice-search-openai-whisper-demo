@@ -1,4 +1,4 @@
-# LAI_voice_search_openai_whisper_demo app
+# Speech Search Engine with Whisper
 
 
 [![LAI](https://bit.ly/3xTcccO)][#app-gallery]
