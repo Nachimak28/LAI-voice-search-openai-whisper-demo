@@ -1,14 +1,15 @@
 import os
 from dataclasses import dataclass
+
+import gradio as gr
 import lightning as L
 from lightning_app.components.serve import ServeGradio
-from lightning_app import BuildConfig
-import gradio as gr
+
 from .openai_whisper_demo import WhisperSearch
 
 
 @dataclass
-class CustomBuildConfig(BuildConfig):
+class CustomBuildConfig(L.BuildConfig):
     def build_commands(self):
         return ["sudo apt-get update", "sudo apt-get install -y ffmpeg"]
 
@@ -16,8 +17,8 @@ class CustomBuildConfig(BuildConfig):
 class LitGradio(ServeGradio):
 
     inputs = gr.components.Audio(
-            source="upload", type="filepath", label="Upload your audio"
-        )
+        source="upload", type="filepath", label="Upload your audio"
+    )
 
     outputs = gr.components.HTML(label="Transcribed output")
     enable_queue = True
@@ -25,7 +26,11 @@ class LitGradio(ServeGradio):
 
     def __init__(self):
         # Use the custom build config
-        super().__init__(parallel=True, cloud_build_config=CustomBuildConfig())
+        super().__init__(
+            parallel=True,
+            cloud_compute=L.CloudCompute("cpu-small"),
+            cloud_build_config=CustomBuildConfig(),
+        )
 
     def predict(self, audio_file):
         return self.model.get_search_results_from_speech(audio_file)
