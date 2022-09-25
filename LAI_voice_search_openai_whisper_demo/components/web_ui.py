@@ -29,7 +29,12 @@ class LitGradio(ServeGradio):
         super().__init__(
             parallel=True,
             cloud_compute=L.CloudCompute("cpu-small"),
-            cloud_build_config=CustomBuildConfig(),
+            cloud_build_config=CustomBuildConfig(
+                requirements=[
+                    "whisper@ git+https://github.com/openai/whisper",
+                    "duckduckgo-search==2.1.3",
+                ]
+            ),
         )
 
     def predict(self, audio_file):
