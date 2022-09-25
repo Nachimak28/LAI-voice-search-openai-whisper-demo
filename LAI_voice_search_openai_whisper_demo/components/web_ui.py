@@ -1,8 +1,10 @@
-import os
 from dataclasses import dataclass
+from functools import partial
 
+import gradio
 import gradio as gr
 import lightning as L
+import torch
 from lightning.app.components.serve import ServeGradio
 
 
@@ -13,7 +15,6 @@ class CustomBuildConfig(L.BuildConfig):
 
 
 class LitGradio(ServeGradio):
-
     inputs = gr.components.Audio(
         source="upload", type="filepath", label="Upload your audio"
     )
@@ -35,7 +36,10 @@ class LitGradio(ServeGradio):
             ),
         )
 
+    @torch.inference_mode()
     def predict(self, audio_file):
+        if audio_file is None:
+            return "<p style='color: red'>You must upload an audio first!</p>"
         return self.model.get_search_results_from_speech(audio_file)
 
     def build_model(self):
@@ -43,3 +47,26 @@ class LitGradio(ServeGradio):
 
         voice_to_search = WhisperSearch()
         return voice_to_search
+
+    def run(self, *args, **kwargs):
+        if self._model is None:
+            self._model = self.build_model()
+        fn = partial(self.predict, *args, **kwargs)
+        fn.__name__ = self.predict.__name__
+        gradio.Interface(
+            fn=fn,
+            inputs=self.inputs,
+            outputs=self.outputs,
+            examples=self.examples,
+            title="Speech Search Engine",
+            description="""Make search on DuckDuckGo by uploading your audio.
+            <br>It is deployed on small CPU so might run slow 🐢. 
+            For faster inference clone the app and run on a GPU.""",
+            article="""Powered by OpenAI's <a href="https://openai.com/blog/whisper/">Whisper</a>, 
+            it approaches human level robustness and accuracy on English speech recognition.""",
+            cache_examples=True,
+        ).launch(
+            server_name=self.host,
+            server_port=self.port,
+            enable_queue=self.enable_queue,
+        )
