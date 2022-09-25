@@ -3,7 +3,9 @@
 #   1. does the audio transcription to english text
 #   2. return the search results for ddg in html format to serve to gradio
 import whisper
+
 from .ddg_search_component import Search
+
 
 class WhisperSearch:
     def _setup(self):
@@ -23,7 +25,6 @@ class WhisperSearch:
         mel = whisper.log_mel_spectrogram(audio).to(self.model.device)
         return mel
 
-    
     def _detect_spoken_language(self, mel):
         _, probs = self.model.detect_language(mel)
         print(f"Detected language: {max(probs, key=probs.get)}")
@@ -32,12 +33,14 @@ class WhisperSearch:
     def predict(self, audio_file_path):
         # get the mel spectrogram
         mel = self._prep_audio(audio_file_path)
-        
+
         # get the language
         # language = self._detect_spoken_language(mel)
-        
+
         # do the transcription - uncomment one of the options line as per env
-        options = whisper.DecodingOptions(task='translate', fp16=False) # for running on CPU
+        options = whisper.DecodingOptions(
+            task="translate", fp16=False
+        )  # for running on CPU
         # options = whisper.DecodingOptions(task='translate') # for running on GPU
         result = whisper.decode(self.model, mel, options)
 
