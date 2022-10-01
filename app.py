@@ -1,5 +1,5 @@
+import os
 import lightning as L
-
 from LAI_voice_search_openai_whisper_demo import LitGradio
 
 
@@ -9,6 +9,8 @@ class RootFlow(L.LightningFlow):
         self.lit_gradio = LitGradio()
 
     def run(self):
+        if os.environ.get("TESTING_LAI"):
+            print("⚡ Lightning Research App! ⚡")
         self.lit_gradio.run()
 
     def configure_layout(self):
