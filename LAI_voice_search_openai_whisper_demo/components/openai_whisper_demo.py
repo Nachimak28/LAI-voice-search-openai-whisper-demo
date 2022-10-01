@@ -10,9 +10,23 @@ from .ddg_search_component import Search
 
 class WhisperSearch:
     def _setup(self):
+        # pre-setup model download and load
         self.model = whisper.load_model("base")
 
     def __init__(self):
+        """
+        A simple class which brings together OpenAI's Whisper model's capability to perform 
+        multi-lingual Speech-to-text transcription and the web search functionality of Search class
+        to mimic the voice search feature as seen in search engines like Google, DuckDuckGo etc. 
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        None
+        """
         self.model = None
         self.web_crawler = Search()
 
@@ -48,6 +62,7 @@ class WhisperSearch:
         return result.text
 
     def get_search_results_from_speech(self, audio_file_path):
+        # bringing it all together
         search_query = self.predict(audio_file_path=audio_file_path)
         search_results = self.web_crawler.search(search_query)
         return search_results

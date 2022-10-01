@@ -10,14 +10,20 @@ from lightning.app.components.serve import ServeGradio
 
 @dataclass
 class CustomBuildConfig(L.BuildConfig):
+    """
+    Custom build config defined for ServeGradio work component.
+    Used to install the FFMPEG dependency which is used for audio processing by Whisper
+    """
     def build_commands(self):
         return ["sudo apt-get update", "sudo apt-get install -y ffmpeg"]
 
 
 class LitGradio(ServeGradio):
+    # With a gradio bug fix, this input shall be changed from "upload" to "microphone" soon.
     inputs = gr.components.Audio(
-        source="upload", type="filepath", label="Upload your audio"
+        source="upload", type="filepath", label="Record your audio"
     )
+
 
     outputs = gr.components.HTML(label="Transcribed output")
     enable_queue = True
@@ -39,6 +45,10 @@ class LitGradio(ServeGradio):
 
     @torch.inference_mode()
     def predict(self, audio_file):
+        """
+        Prediction method which run the speech-to-text prediction and returns 
+        the web search results in HTML string format for rendering.
+        """
         if audio_file is None:
             return "<p style='color: red'>You must upload an audio first!</p>"
         return self.model.get_search_results_from_speech(audio_file)
