@@ -12,6 +12,7 @@ from contextlib import redirect_stdout
 
 from lightning.app.testing.testing import LightningTestApp, application_testing
 
+os.environ["TESTING_LAI"] = "True"
 
 class LightningAppTestInt(LightningTestApp):
     def run_once(self) -> bool:
@@ -19,7 +20,7 @@ class LightningAppTestInt(LightningTestApp):
         with redirect_stdout(f):
             super().run_once()
         out = f.getvalue()
-        assert out == "hello from component A\nhello from component B\n"
+        assert "⚡ Lightning Research App! ⚡\n" == out
         return True
 
 
@@ -28,7 +29,7 @@ def test_templatename_app():
     os.chdir("..")
 
     cwd = os.getcwd()
-    cwd = os.path.join(cwd, "LAI_voice_search_openai_whisper_demo/app.py")
+    cwd = os.path.join(cwd, "app.py")
     command_line = [
         cwd,
         "--blocking",
