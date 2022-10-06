@@ -1,2 +1,3 @@
-gradio==3.4
-# gradio@ git+https://github.com/gradio-app/gradio@662a8116890f683f55f9fa7a96276e0166876b3e
+duckduckgo-search==2.1.3
+gradio==3.4b5
+whisper@ git+https://github.com/openai/whisper
