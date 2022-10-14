@@ -75,8 +75,8 @@ class LitGradio(ServeGradio):
             examples=self.examples,
             title="Speech Search Engine",
             description="""Make search on DuckDuckGo by uploading your audio.
-            <br>It is deployed on small CPU so might run slow 🐢. 
-            For faster inference clone the app and run on a GPU.""",
+            <br>It is deployed on small CPU so might run slow 🐢 - About 120s for a 5 second audio.
+            <br>For faster inference clone the app and run on a GPU.""",
             article="""Powered by OpenAI's <a href="https://openai.com/blog/whisper/">Whisper</a>, 
             it approaches human level robustness and accuracy on English speech recognition.""",
             cache_examples=True,
