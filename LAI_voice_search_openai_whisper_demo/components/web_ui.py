@@ -20,12 +20,16 @@ class CustomBuildConfig(L.BuildConfig):
 
 class LitGradio(ServeGradio):
     # With a gradio bug fix, this input shall be changed from "upload" to "microphone" soon.
+    # inputs = gr.components.Audio(
+    #     source="upload", type="filepath", label="Record your audio"
+    # )
+
     inputs = gr.components.Audio(
-        source="upload", type="filepath", label="Record your audio"
+        source="microphone", type="filepath", label="Record your audio"
     )
 
 
-    outputs = gr.components.HTML(label="Transcribed output")
+    outputs = [gr.components.Textbox(label="Transcribed text"), gr.components.HTML(label="Transcribed output")]
     enable_queue = True
     examples = [["./resources/meaning_of_life.wav"], 
                 ["./resources/42_ans_to_everything_english.wav"]]
@@ -50,7 +54,7 @@ class LitGradio(ServeGradio):
         the web search results in HTML string format for rendering.
         """
         if audio_file is None:
-            return "<p style='color: red'>You must upload an audio first!</p>"
+            return ["You must upload an audio first", "<p style='color: red'>You must upload an audio first!</p>"]
         return self.model.get_search_results_from_speech(audio_file)
 
     def build_model(self):

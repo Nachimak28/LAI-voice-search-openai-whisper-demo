@@ -10,7 +10,12 @@ from .ddg_search_component import Search
 
 class WhisperSearch:
     def _setup(self):
-        # pre-setup model download and load
+        """
+        Pre-setup model download and load
+
+        The model can be changed based on the options provided at
+        https://github.com/openai/whisper#available-models-and-languages
+        """
         self.model = whisper.load_model("base")
 
     def __init__(self):
@@ -65,4 +70,4 @@ class WhisperSearch:
         # bringing it all together
         search_query = self.predict(audio_file_path=audio_file_path)
         search_results = self.web_crawler.search(search_query)
-        return search_results
+        return [search_query, search_results]
