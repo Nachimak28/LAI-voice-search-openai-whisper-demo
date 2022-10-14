@@ -18,16 +18,58 @@ lightning init app LAI_voice_search_openai_whisper_demo
 
 ## To run LAI_voice_search_openai_whisper_demo
 
+Prerequisites
+
+* Create a conda/venv environment
+
+We use conda here but you can use whichever tool you're comfortable with
+```bash
+conda create --yes --name oaiwhisper python=3.8
+conda activate oaiwhisper
+```
+
+* Install FFMPEG
+
+FFMPEG is necessary for the audio processing
+
+ - For Windows: Follow [these steps](https://www.wikihow.com/Install-FFmpeg-on-Windows)
+ - For Ubuntu/Debian: 
+```bash
+sudo apt-get update
+sudo apt-get install -y ffmpeg
+```
+* Install packages
+
+```bash
+pip install -r requirements.txt
+```
+
+* Install app
+
 First, install LAI_voice_search_openai_whisper_demo (warning: this app has not been officially approved on the lightning gallery):
 
 ```bash
 lightning install app https://github.com/theUser/LAI_voice_search_openai_whisper_demo
 ```
 
+* Run locally
+
 Once the app is installed, run it locally with:
 
 ```bash
 lightning run app LAI_voice_search_openai_whisper_demo/app.py
+```
+
+If the above does not work, manually setup the environment:
+```
+git clone https://github.com/Nachimak28/LAI-voice-search-openai-whisper-demo
+cd LAI-voice-search-openai-whisper-demo
+conda create --yes --name oaiwhisper python=3.8
+conda activate oaiwhisper
+python -m pip install -r requirements.txt
+python -m pip install lightning
+python -m lightning run app app.py
+python -m lightning run app app.py --cloud
 ```
 
 
@@ -68,7 +110,6 @@ Ans: Provisioning the infra and deployment is automated, all one needs to do is 
 
 ## TODOs
 - [ ] Update code to accept microphone input as soon as Gradio bug is resolved
+- [ ] Write unit tests 
 - [x] Run given test
 - [x] Add comments and prepare code for submission to Lightning Gallery
-
-
