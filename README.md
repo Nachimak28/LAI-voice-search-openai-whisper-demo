@@ -69,6 +69,8 @@ conda activate oaiwhisper
 python -m pip install -r requirements.txt
 python -m pip install lightning
 python -m lightning run app app.py
+
+# to run on lightning cloud
 python -m lightning run app app.py --cloud
 ```
 

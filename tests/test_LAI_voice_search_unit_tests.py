@@ -5,7 +5,6 @@ from LAI_voice_search_openai_whisper_demo.components.openai_whisper_demo import 
 
 ### tests for the web search class
 def test_search_function():
-    # Note: This function may not pass if the search results due to SEO change over time
     web_crawler = Search()
     keywords = 'capital of India'
     
