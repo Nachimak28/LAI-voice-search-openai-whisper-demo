@@ -58,7 +58,7 @@ class Search:
         self.time = time
         self.max_results = max_results
 
-    def search(self, keywords: str):
+    def search(self, keywords: str, html: bool=True):
         """
         Core method which performs the web search via the duckduckgosearch package
         """
@@ -76,5 +76,10 @@ class Search:
         # search_results = [{'title': 'What Is The Answer Of 42? - Problem Solver X', 'href': 'https://problemsolverx.com/what-is-the-answer-of-42/', 'body': 'After calculating for 7.5 million years, Deep Thought came up with the answer. What is the meaning of 42? The meaning of life, the universe, and everything can be found in the number 42. Is 42 the perfect number? 42 isnt a perfect number. The following steps are used to determine if a number is a perfect number.'},
         # {'title': 'How is 42 the answer to Life, the universe and the everything?', 'href': 'https://9to5science.com/how-is-42-the-answer-to-life-the-universe-and-the-everything', 'body': 'This is not mathematics. It is a reference to The Hitchhikers Guide to the Galaxy by Douglas Adams (originally a series of radio plays, later a wildly popular series of books, also adapted as movies), in which it is a plot point that the answer to the ultimate question of life, the universe, and everything is known to be the number $42$ -- but unfortunately it is unknown which question the ...'}]
 
-        # converting search result dictionary into HTML string for rendering
-        return make_html(keywords, search_results)
+        if html:
+            # converting search result dictionary into HTML string for rendering
+            return make_html(keywords, search_results)
+        else:
+            return search_results
+        
+        
