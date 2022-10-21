@@ -109,7 +109,7 @@ Ans: Provisioning the infra and deployment is automated, all one needs to do is 
 
 
 ## TODOs
-- [ ] Update code to accept microphone input as soon as Gradio bug is resolved
-- [ ] Write unit tests 
+- [x] Update code to accept microphone input as soon as Gradio bug is resolved
+- [x] Write unit tests 
 - [x] Run given test
 - [x] Add comments and prepare code for submission to Lightning Gallery

@@ -69,5 +69,5 @@ class WhisperSearch:
     def get_search_results_from_speech(self, audio_file_path):
         # bringing it all together
         search_query = self.predict(audio_file_path=audio_file_path)
-        search_results = self.web_crawler.search(search_query)
+        search_results = self.web_crawler.search(keywords=search_query, html=True)
         return [search_query, search_results]
