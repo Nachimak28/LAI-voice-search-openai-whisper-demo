@@ -1,4 +1,3 @@
 duckduckgo-search==2.1.3
-# gradio==3.4b5
 gradio==3.4.1
 whisper@ git+https://github.com/openai/whisper
