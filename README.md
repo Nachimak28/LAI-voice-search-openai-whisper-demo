@@ -100,9 +100,6 @@ To test, follow the README.md instructions in the tests folder.
 
 ## FAQ
 
-* Why upload audio and not use the microphone like a sane person?
-Ans: The original intention was to use the mic but due to a small [bug](https://github.com/gradio-app/gradio/issues/2325) in gradio Audio component, it does not work as expected. The file upload mechanism does work but is temporary, this shall be changed to mic once the gradio bug is resolved.
-
 * Why use DuckDuckGo(DDG) and not Google search?
 Ans: Google has a lot of rate limiting applied and frequent searches via code lead to getting blocked resulting in status code: 429 - Too many requests. Apparently DDG does not have super strict rate limiting. 
 
