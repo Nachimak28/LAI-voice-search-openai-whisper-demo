@@ -3,7 +3,7 @@
 
 [![LAI](https://bit.ly/3xTcccO)][#app-gallery]
 
-[#app-gallery]: https://01gdsrn3rf7qgev31g8gvea1gh.litng-ai-03.litng.ai/view/home
+[#app-gallery]: https://01gfax73s2tn315zme310fkh4z.litng-ai-03.litng.ai/view/home
 
 This app is a simulation of a Voice search feature provided by search engines like Google, DuckDuckGo using OpenAI's [Whisper](https://openai.com/blog/whisper/) model.
 
