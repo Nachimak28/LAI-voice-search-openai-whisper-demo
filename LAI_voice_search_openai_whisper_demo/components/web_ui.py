@@ -38,7 +38,7 @@ class LitGradio(ServeGradio):
         # Use the custom build config
         super().__init__(
             parallel=True,
-            cloud_compute=L.CloudCompute("gpu"),
+            cloud_compute=L.CloudCompute("cpu-small"),
             cloud_build_config=CustomBuildConfig(
                 requirements=[
                     "whisper@ git+https://github.com/openai/whisper",
