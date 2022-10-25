@@ -38,7 +38,7 @@ class LitGradio(ServeGradio):
         # Use the custom build config
         super().__init__(
             parallel=True,
-            cloud_compute=L.CloudCompute("cpu"),
+            cloud_compute=L.CloudCompute("gpu"),
             cloud_build_config=CustomBuildConfig(
                 requirements=[
                     "whisper@ git+https://github.com/openai/whisper",
@@ -74,9 +74,7 @@ class LitGradio(ServeGradio):
             outputs=self.outputs,
             examples=self.examples,
             title="Speech Search Engine",
-            description="""Make search on DuckDuckGo by uploading your audio.
-            <br>It is deployed on small CPU so might run slow 🐢 - About 120s for a 5 second audio.
-            <br>For faster inference clone the app and run on a GPU.""",
+            description="""Make search on DuckDuckGo by uploading your audio.""",
             article="""Powered by OpenAI's <a href="https://openai.com/blog/whisper/">Whisper</a>, 
             it approaches human level robustness and accuracy on English speech recognition.""",
             cache_examples=True,
