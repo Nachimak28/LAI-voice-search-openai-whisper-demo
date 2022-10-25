@@ -1,4 +1,4 @@
-# (WIP) Speech Search Engine with Whisper
+# Speech Search Engine with Whisper
 
 
 [![LAI](https://bit.ly/3xTcccO)][#app-gallery]
